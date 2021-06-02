@@ -1,0 +1,70 @@
+﻿using AutoMapper;
+using JEvents.API.Controllers;
+using JEvents.API.Models;
+using JEvents.API.Profiles;
+using JEvents.API.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Xunit;
+
+namespace JEventsAPI.Tests
+{
+    
+    public class EventControllerTests
+    {
+        Mock<IEventRepository> mockRepo;
+        EventsProfile profile;
+        MapperConfiguration config;
+        IMapper _mapper;
+        public EventControllerTests()
+        {
+            mockRepo = new Mock<IEventRepository>();
+           
+
+
+            profile = new EventsProfile();
+            config  = new MapperConfiguration(cfg => cfg.AddProfile(profile));
+
+            _mapper = new Mapper(config);
+
+        }
+
+        [Fact]
+        public void GetEventItems_ReturnsZeroItems_WhenDbIsEmpty()
+        {
+            //Arrange
+            mockRepo.Setup(repo => repo.GetEvents()).Returns(GetEvents(null));
+           
+            var controller = new EventsController(mockRepo.Object,_mapper);
+
+            //Act
+
+            var result = controller.GetEvents();
+
+            //Assert
+
+            Assert.IsType<OkObjectResult>(result.Result);
+        }
+
+        private List<Event> GetEvents(Guid? guid)
+        {
+            var events = new List<Event>();
+            if(guid != null)
+            {
+                events.Add(new Event()
+                {
+                    Description = "hello test",
+                    Id = Guid.NewGuid(),
+                    StartDate = DateTime.Now,
+                    Duration = 1
+
+                });
+            }
+
+            return events;
+        }
+    }
+}
