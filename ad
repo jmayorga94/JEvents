@@ -1,0 +1,40 @@
+[33mcommit 0ec1b0097378e8a18649de03b01f5926cb2d824d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 988df4c 2248574
+Author: jmayorga94 <javi.mayorga1994@gmail.com>
+Date:   Wed Jun 2 15:58:19 2021 -0600
+
+    Merge branch 'master' of https://github.com/jmayorga94/JEvents
+
+[33mcommit 988df4c173dc87544ca3c94f0af9cc9a943dd01a[m
+Author: jmayorga94 <javi.mayorga1994@gmail.com>
+Date:   Wed Jun 2 15:57:37 2021 -0600
+
+    Added unit test for GetEventById method
+
+[33mcommit 2248574bc5cdc62d4247b9ed92e98b36f1926866[m
+Author: Javier Mayorga <73761220+jmayorga94@users.noreply.github.com>
+Date:   Wed Jun 2 15:31:53 2021 -0600
+
+    Set up CI with Azure Pipelines
+    
+    [skip ci]
+
+[33mcommit 7f27e09191a7b3ce4d62297f319df695ae5245de[m
+Author: Javier Mayorga <73761220+jmayorga94@users.noreply.github.com>
+Date:   Wed Jun 2 14:35:14 2021 -0600
+
+    Set up CI with Azure Pipelines
+    
+    [skip ci]
+
+[33mcommit e96b63179e00ef405e5f1534ad2a50aa6d5ce334[m
+Author: Javier Mayorga <73761220+jmayorga94@users.noreply.github.com>
+Date:   Wed Jun 2 14:26:28 2021 -0600
+
+    Create README.md
+
+[33mcommit d7129efde31be007bb664da3d061934e2bf79124[m
+Author: jmayorga94 <javi.mayorga1994@gmail.com>
+Date:   Wed Jun 2 14:24:49 2021 -0600
+
+    Initial Commit
