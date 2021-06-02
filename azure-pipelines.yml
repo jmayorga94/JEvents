@@ -26,7 +26,7 @@ steps:
     inputs:
       command: publish
       publishWebProjects: false
-      projects: 'src/2.Services/JEvents.API/*.csproj'
+      projects: 'JEvents.API/*.csproj'
       arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
 
   - task: PublishBuildArtifacts@1
