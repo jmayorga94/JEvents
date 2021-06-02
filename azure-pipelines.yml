@@ -20,12 +20,12 @@ steps:
       command: test
       projects: '**/*test/*Services/*.csproj'
       arguments: '--configuration $(buildConfiguration)'
-
   - script: dotnet test **/*test/*Services/*.csproj --logger trx
   - publish: PublishTestResults@2
     condition: succeededOrFailed()
     inputs:
-    testRunner: VSTest
-    testResultsFiles: '**/*.trx'
+      testRunner: VSTest
+      testResultsFiles: '**/*.trx'
+
 
   
