@@ -66,5 +66,31 @@ namespace JEventsAPI.Tests
 
             return events;
         }
+
+       [Fact]
+       public void GetEvents_ReturnsOneItem_WhenRequestedById()
+        {
+            mockRepo.Setup(repo => repo.GetEventById(Guid.Parse("e12143b3-5e41-4688-a1a3-0bdb107cbeb7"))).Returns(GetEventById(Guid.Parse("e12143b3-5e41-4688-a1a3-0bdb107cbeb7")));
+
+            var controller = new EventsController(mockRepo.Object, _mapper);
+
+            var result = controller.GetEventById(Guid.Parse("e12143b3-5e41-4688-a1a3-0bdb107cbeb7"));
+
+
+            Assert.IsType<OkObjectResult>(result.Result);
+        }
+
+        private Event GetEventById(Guid id)
+        {
+            var evnt = new Event()
+            {
+                Id = Guid.Parse("e12143b3-5e41-4688-a1a3-0bdb107cbeb7"),
+                Description = "Test event",
+                StartDate = DateTime.Now,
+                Duration = 1
+            };
+
+            return evnt;
+        }
     }
 }
