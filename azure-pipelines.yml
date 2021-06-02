@@ -19,7 +19,7 @@ steps:
     displayName: 'dotnet test'
     inputs:
       command: test
-      projects: '**/*test/*Services/*.csproj'
+      projects: '*test/*Services/*.csproj'
       arguments: '--configuration $(buildConfiguration)'
 
 
