@@ -15,10 +15,10 @@ steps:
   - task: UseDotNet@2
   - script: dotnet build --configuration $(buildConfiguration)
     displayName: dotnet build $(buildConfiguration)
-  - task: DotNetCoreCLI@2
+  - task: UseDotNet@2
     inputs:
       command: test
-      projects: '**/*tests/*Services/*.csproj'
+      projects: '**/*test/*Services/*.csproj'
       arguments: '--configuration $(buildConfiguration)'
 
   
