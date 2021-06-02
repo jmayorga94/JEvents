@@ -77,7 +77,7 @@ namespace JEventsAPI.Tests
             var result = controller.GetEventById(Guid.Parse("e12143b3-5e41-4688-a1a3-0bdb107cbeb7"));
 
 
-            Assert.IsType<OkResult>(result.Result);
+            Assert.IsType<OkObjectResult>(result.Result);
         }
 
         private Event GetEventById(Guid id)
