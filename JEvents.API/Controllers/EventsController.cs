@@ -7,6 +7,7 @@ using JEvents.API.Context;
 using JEvents.API.Dtos;
 using JEvents.API.Models;
 using JEvents.API.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,7 @@ namespace JEvents.API.Controllers
         ///     Get /api/events/
         ///
         /// </remarks>
+        [Authorize]
         [HttpGet("", Name = nameof(GetEvents))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Produces("application/json")]

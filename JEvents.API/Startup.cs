@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using JEvents.API.Context;
 using JEvents.API.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,14 @@ namespace JEvents.API
             {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt=> 
+            {
+                opt.Audience = Configuration["ResourceId"];
+                opt.Authority = $"{Configuration["Instance"]}{Configuration["TenantId"]}";
+
+            });
+
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddDbContext<JEventsContext>(options => {
                 options.UseNpgsql(builder.ConnectionString);
@@ -71,7 +80,7 @@ namespace JEvents.API
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<JEventsContext>();
-                context.Database.EnsureCreated();
+                context.Database.Migrate();
             }
 
             if (env.IsDevelopment())
@@ -79,6 +88,7 @@ namespace JEvents.API
                 app.UseDeveloperExceptionPage();
             }
 
+           
             app.UseSwagger(c=> 
             {
                 c.SerializeAsV2 = true;
@@ -92,7 +102,7 @@ namespace JEvents.API
             
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
